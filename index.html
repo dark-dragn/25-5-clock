@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>25 + 5 Clock</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+  </head>
+  <body onload=initial()>
+    
+    <script>
+        function initial(){
+            document.getElementById("break-length").innerText=5;
+            document.getElementById("session-length").innerText=25;
+        }
+        function increment(ID){
+          let value=document.getElementById(ID);
+            if(value.innerText!='60' && playPause==false){
+            value.innerText=parseInt(value.innerText)+1;
+            if(ID=="session-length" && playPause==false){
+              if(parseInt(value.innerText)<10){
+                document.getElementById("time-left").innerText="0"+value.innerText+":00"
+              }
+              else{
+                document.getElementById("time-left").innerText=value.innerText+":00"
+              }
+            }
+          }
+        }
+        function decrement(ID){
+          let value=document.getElementById(ID);
+          if(value.innerText!='1'&&  playPause==false){
+            value.innerText=parseInt(value.innerText)-1;
+            if(ID=="session-length" && playPause==false){
+              if(parseInt(value.innerText)<10){
+                document.getElementById("time-left").innerText="0"+value.innerText+":00"
+              }
+              else{
+                document.getElementById("time-left").innerText=value.innerText+":00"
+              }
+            }
+          }
+        }
+    </script>
+    <div class="container text-center py-5">
+      <div class="text-center row">
+        <h1>Session Tracker</h1>
+        <div id="timer-label"> Session </div>
+        <div class="col-md-6" id="break-label"> <div class=" btn-group"><button class="btn btn-success" onclick="decrement('break-length')" id="break-decrement">-</button>
+          <h2 id="break-length">0</h2><button  class="btn btn-success" onclick="increment('break-length')" id="break-increment">+</button></div>
+          <h3>Break Length</h3>
+        </div>
+        <div class="col-md-6" id="session-label"><div class="btn-group"> <button class="btn btn-success" onclick="decrement('session-length')" id="session-decrement">-</button>
+          <h2 id="session-length">0</h2><button class="btn btn-success" onclick="increment('session-length')" id="session-increment">+</button></div>
+          <h3>Session Length</h3>
+        </div>
+        <div class="row btn-group">
+          <audio src="beep.mp3" id="beep"></audio>
+          <h1 id="time-left">25:00</h1>
+          <div>
+          <button class="btn btn-success mx-1" id="reset">Reset</button><button class="btn btn-success"
+            id="start_stop">PLAY/PAUSE</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="clock.js"></script>
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+  </body>
+</html>
